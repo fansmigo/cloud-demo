@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: cloud-consumer
+  main:
+    allow-bean-definition-overriding: true #允许存在多个Feign调用相同Service的接口
+
+#服务端口
+#server:
+#  port: 8031
+
+# 注册中心地址
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8011/eureka/
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
+feign:
+  hystrix:
+    enabled: true
+
+# 用于转发请求到指定的服务器路径上
+#zuul:
+#  routes:
+#    books:
+#      url: http://localhost:8032

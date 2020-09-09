@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: cloud-gateway
+server:
+  port: 8041
+zuul:
+  routes:
+    # 面向服务的路由
+    api-a:
+      path: /provider/**
+      serviceId: cloud-provider #cloud-provider 对应的是注册中心的服务的名称
+
+      #服务分发的方式是这样的，我们通过localhost：10215/client访问，实际是将地址映射到了client-test这个服务的地址上
+
+    # 传统的路由
+    api-b-url:
+      path: /consumer/**
+      #由传统的路由模式，我们可以知道用户访问的路由路径为localhost:10215/caller，将服务映射到了http://localhost:10213
+      url: http://localhost:8031/
+
+    # 举例，即：所有的/books/**的请求都将被转发到Id为cloud-provider的服务上去
+#    books:
+#      path: /books/**
+#      serviceId: cloud-provider
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8011/eureka/

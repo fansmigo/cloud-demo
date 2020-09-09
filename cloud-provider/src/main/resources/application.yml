@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: cloud-provider
+
+#服务端口 可以在启动类中通过输入的方式实现多个端口同时启动
+#server:
+#  port: 8021
+
+# 注册中心地址
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8011/eureka/
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
